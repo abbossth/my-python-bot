@@ -1,15 +1,10 @@
-import telebot
 import asyncio
-from config import BOT_TOKEN
-
-
+from bot_logic import bot_logic
+from db_setup import db_setup
 
 def main():
-    bot = telebot.TeleBot(BOT_TOKEN)
-    @bot.message_handler(commands=['start', 'survey'])
-    def start(message):
-        bot.send_message(message.chat.id, message.text)
-    bot.polling(non_stop=True, interval=0)
+    db_setup()
+    bot_logic()
 
 
 if __name__ == "__main__":
